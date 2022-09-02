@@ -1,17 +1,11 @@
 cmake_minimum_required(VERSION 3.12.4)
 
-if(NOT ESP_PLATFORM)
-  project(lvgl HOMEPAGE_URL https://github.com/lvgl/lvgl)
-endif()
+project(lvgl_lite VERSION 8.3.1)
 
-set(LVGL_ROOT_DIR ${CMAKE_CURRENT_LIST_DIR})
+file(GLOB_RECURSE all_source_file src/*.c)
 
-if(ESP_PLATFORM)
-  include(${CMAKE_CURRENT_LIST_DIR}/env_support/cmake/esp.cmake)
-elseif(ZEPHYR_BASE)
-  include(${CMAKE_CURRENT_LIST_DIR}/env_support/cmake/zephyr.cmake)
-elseif(MICROPY_DIR)
-  include(${CMAKE_CURRENT_LIST_DIR}/env_support/cmake/micropython.cmake)
-else()
-  include(${CMAKE_CURRENT_LIST_DIR}/env_support/cmake/custom.cmake)
-endif()
+add_library(lvgl_lite STATIC ${all_source_file})
+
+target_include_directories(lvgl_lite PUBLIC ${CMAKE_SOURCE_DIR})
+target_compile_definitions(lvgl_lite PUBLIC LV_CONF_INCLUDE_SIMPLE)
+

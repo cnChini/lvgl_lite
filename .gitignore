@@ -1,1 +1,8 @@
-/build/
+# IDE related
+.idea
+.vscode
+
+# Build output
+build/
+
+
