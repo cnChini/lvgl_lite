@@ -1,6 +1,6 @@
 # IDE related
-.idea
-.vscode
+.idea/
+.vscode/
 
 # Build output
 build/
